@@ -1,10 +1,13 @@
 import React from "react";
 import Movie from "./Movie";
-
+import moviesData from "./Data";
 function MovieList() {
+  const [movies, setMovies] = React.useState(moviesData);
   return (
     <div>
-      <Movie title="Shutter Island" year="2010" director="Martin Scorsese" />
+      {movies.map((movie) => {
+        return <Movie {...movie} />;
+      })}
     </div>
   );
 }
