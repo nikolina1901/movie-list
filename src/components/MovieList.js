@@ -3,6 +3,13 @@ import Movie from "./Movie";
 import moviesData from "./Data";
 import axios from "axios";
 function MovieList() {
+  const [
+    areOnlyRecentMoviesDisplayed,
+    setAreOnlyRecentMoviesDisplayed,
+  ] = React.useState(false);
+  function recentMoviesHandler() {
+    setAreOnlyRecentMoviesDisplayed(!areOnlyRecentMoviesDisplayed);
+  }
   const [movies, setMovies] = React.useState(moviesData);
   React.useEffect(() => {
     fetchMovies();
@@ -22,11 +29,17 @@ function MovieList() {
         console.log(error);
       });
   };
+  const filteredMovies = movies
+    .filter((movie) => {
+      return !areOnlyRecentMoviesDisplayed || movie.year > 2000;
+    })
+    .map((movie) => {
+      return <Movie {...movie} />;
+    });
   return (
     <div>
-      {movies.map((movie) => {
-        return <Movie {...movie} />;
-      })}
+      <button onClick={recentMoviesHandler}>Click Me</button>
+      {filteredMovies}
     </div>
   );
 }
