@@ -34,7 +34,7 @@ function MovieList() {
       return !areOnlyRecentMoviesDisplayed || movie.year > 2000;
     })
     .map((movie) => {
-      return <Movie {...movie} />;
+      return <Movie key={movie.id} {...movie} />;
     });
   return (
     <div>
