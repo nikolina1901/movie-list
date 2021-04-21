@@ -7,8 +7,6 @@ import MovieList from "./components/MovieList";
 function App() {
   return (
     <div className="App">
-      <MovieList />
-
       <Switch>
         <Route exact path="/movies" component={MovieList} />
         <Route path="/movies/:id" component={MovieDetails} />
